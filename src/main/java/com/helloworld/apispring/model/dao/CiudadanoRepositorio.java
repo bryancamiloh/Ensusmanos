@@ -35,6 +35,14 @@ public class CiudadanoRepositorio {
         return ciudadano.getIdCiudadano();
     }
     
+    public List<Ciudadano> login(long ident, String contraseña)
+    {
+        Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+        crit.add(Restrictions.eq("idCiudadano", ident));
+        crit.add(Restrictions.eq("Contraseña", contraseña));
+        return crit.list();
+    }
+    
     public Ciudadano obtenerCiudadanoPorId(long id)
     {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);

@@ -27,11 +27,17 @@ public class Ciudadano_evento implements Serializable{
     @Column(name="Num_reporte")
     private long numReporte;
     
-    @Column(name="Fecha_evento")
-    private Date fechaEvento;
+    @Column
+    private Date Fecha;
     
     @Column
     private String Situacion;
+    
+    @Transient
+    private long idCiudadano;
+    
+    @Transient
+    private long idEvento;
     
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="Ident_ciudadano")
@@ -41,20 +47,13 @@ public class Ciudadano_evento implements Serializable{
     @JoinColumn(name="Num_evento")
     private Evento evento;
     
-    @Transient
-    private long idCiudadano;
-    
-    @Transient
-    private long idEvento;
-    
     public Ciudadano_evento()
     {
         
     }
 
-    public Ciudadano_evento(long numReporte, Date fechaEvento, String Situacion, long idCiudadano, long idEvento) {
-        this.numReporte = numReporte;
-        this.fechaEvento = fechaEvento;
+    public Ciudadano_evento(Date Fecha, String Situacion, long idCiudadano, long idEvento) {
+        this.Fecha = Fecha;
         this.Situacion = Situacion;
         this.idCiudadano = idCiudadano;
         this.idEvento = idEvento;
@@ -68,12 +67,12 @@ public class Ciudadano_evento implements Serializable{
         this.numReporte = numReporte;
     }
 
-    public Date getFechaEvento() {
-        return fechaEvento;
+    public Date getFecha() {
+        return Fecha;
     }
 
-    public void setFechaEvento(Date fechaEvento) {
-        this.fechaEvento = fechaEvento;
+    public void setFecha(Date Fecha) {
+        this.Fecha = Fecha;
     }
 
     public String getSituacion() {
@@ -82,6 +81,22 @@ public class Ciudadano_evento implements Serializable{
 
     public void setSituacion(String Situacion) {
         this.Situacion = Situacion;
+    }
+    
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     public long getIdCiudadano() {
@@ -100,22 +115,4 @@ public class Ciudadano_evento implements Serializable{
         this.idEvento = idEvento;
     }
 
-    public Ciudadano getCiudadano() {
-        return ciudadano;
-    }
-
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
-    }
-    
-    
-    
 }

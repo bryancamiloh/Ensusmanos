@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -57,6 +58,19 @@ public class Controller {
    {
        List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos();
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
+   }
+   
+   @RequestMapping(value="/login",method=RequestMethod.GET)
+   public ResponseEntity<String>Login(@RequestParam(value="id", required=true) long ident, @RequestParam(value="pass", required=true) String contraseña)
+   {
+       List<Ciudadano> resultado = ciudadanoServicio.Login(ident, contraseña);
+       String Mensaje = "";
+       if(!resultado.isEmpty())
+           Mensaje = "El usuario ha sido ha sido autenticado exitosamente";
+       else
+           Mensaje = "No existe un usuario con los datos ingresados";
+       
+       return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
    }
     
 }

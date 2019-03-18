@@ -5,16 +5,17 @@
  */
 package com.helloworld.apispring.model.dao;
 
-import com.helloworld.apispring.model.entity.Ciudadano;
-import com.helloworld.apispring.model.entity.Ciudadano_evento;
+import com.helloworld.apispring.model.entity.Evento;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class Ciudadano_eventoRepositorio {
+public class EventoRepositorio {
     
     @Autowired
     private SessionFactory sessionFactory;
@@ -27,10 +28,11 @@ public class Ciudadano_eventoRepositorio {
         this.sessionFactory = sessionFactory;
     }
     
-    public long reportarCiudadano(Ciudadano_evento reporte)
+    public Evento obtenerEventoPorId(long numevento)
     {
-        getSessionFactory().getCurrentSession().save(reporte);
-        return reporte.getNumReporte();
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Evento.class);
+        criteria.add(Restrictions.eq("numEvento", numevento));
+        return (Evento) criteria.uniqueResult();
     }
     
 }

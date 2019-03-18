@@ -37,4 +37,9 @@ public class CiudadanoServicio {
         return ciudadanoRepositorio.obtenerCiudadanos();
     }
     
+    public List<Ciudadano> Login(long ident, String contraseña)
+    {
+        return ciudadanoRepositorio.login(ident, contraseña);
+    }
+    
 }
