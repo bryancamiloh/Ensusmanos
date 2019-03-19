@@ -53,12 +53,9 @@ public class CiudadanoRepositorio {
         return (Ciudadano) criteria.uniqueResult();
     }
     
-    public List<Ciudadano> obtenerCiudadanos(int pagina)
+    public List<Ciudadano> obtenerCiudadanos()
     {
-        int resultados = 10;
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
-        criteria.setFirstResult((resultados * pagina) - resultados);
-        criteria.setMaxResults(resultados);
         return criteria.list();
     }
     

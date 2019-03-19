@@ -67,9 +67,9 @@ public class Controller {
    }
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos(@PathVariable("pag") int pagina)
+   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos()
    {
-       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos(pagina);
+       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos();
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
    }
    
