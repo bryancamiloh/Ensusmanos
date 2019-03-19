@@ -6,6 +6,7 @@
 package com.helloworld.apispring.model.entity;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -40,7 +41,6 @@ public class Ciudadano {
         
     }
     
-
     public Ciudadano(long idCiudadano, String Nombre, String Apellido, String Contraseña) {
         this.idCiudadano = idCiudadano;
         this.Nombre = Nombre;
@@ -88,7 +88,5 @@ public class Ciudadano {
     public void setPuntaje(int Puntaje) {
         this.Puntaje = Puntaje;
     }
-    
-    
     
 }

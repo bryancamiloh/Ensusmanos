@@ -49,14 +49,27 @@ public class Controller {
    @RequestMapping(value="/ciudadanos/{id}/reportes",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<String> reportarCiudadano(@RequestBody Ciudadano_evento reporte, @PathVariable("id") long id)
    {
-       String Mensaje = "Se ha realizado con éxito un reporte con el número de identificacion: "+ciudadanoEventoServicio.reportarCiudadano(reporte);
+       String Mensaje = "Reporte realizado con éxito numero de reporte: "+ciudadanoEventoServicio.reportarCiudadano(reporte);
+       return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
+   }
+   
+   @RequestMapping(value="/ciudadanos/{id}/reportes",method=RequestMethod.GET)
+   public ResponseEntity<String> obtenerReportesCiudadano(@PathVariable("id") long ident)
+   {
+       String Mensaje = "";
+       List<Ciudadano_evento> listaReportes = ciudadanoEventoServicio.obtenerRepoortesCiudadano(ident);
+       if(!listaReportes.isEmpty())
+           Mensaje = "Se han encontrado los siguientes reportes: \n\n"+listaReportes;
+       else
+           Mensaje="El ciudadano no tiene reportes";
+       
        return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos()
+   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos(@PathVariable("pag") int pagina)
    {
-       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos();
+       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos(pagina);
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
    }
    
@@ -71,6 +84,20 @@ public class Controller {
            Mensaje = "No existe un usuario con los datos ingresados";
        
        return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
+   }
+   
+   @RequestMapping(value="/puntajes/{pag}",method=RequestMethod.GET)
+   public ResponseEntity<List<Ciudadano>> otenerPuntajesDeCiudadanos(@PathVariable("pag") int pagina)
+   {
+       List<Ciudadano> puntajesCiudadanos = ciudadanoServicio.obtenerPuntajesDeCiudadanos(pagina);
+       return new ResponseEntity<List<Ciudadano>>(puntajesCiudadanos,HttpStatus.OK);
+   }
+   
+   @RequestMapping(value="/top10",method=RequestMethod.GET)
+   public ResponseEntity<List<Ciudadano>> obtenerTop10()
+   {
+       List<Ciudadano> topList = ciudadanoServicio.obtenerTop10();
+       return new ResponseEntity<List<Ciudadano>>(topList,HttpStatus.OK);
    }
     
 }

@@ -32,14 +32,24 @@ public class CiudadanoServicio {
         return ciudadanoRepositorio.obtenerCiudadanoPorId(id);
     }
     
-    public List<Ciudadano> obtenerCiudadanos()
+    public List<Ciudadano> obtenerCiudadanos(int pagina)
     {
-        return ciudadanoRepositorio.obtenerCiudadanos();
+        return ciudadanoRepositorio.obtenerCiudadanos(pagina);
     }
     
     public List<Ciudadano> Login(long ident, String contraseña)
     {
         return ciudadanoRepositorio.login(ident, contraseña);
+    }
+    
+    public List<Ciudadano> obtenerPuntajesDeCiudadanos(int pagina)
+    {
+        return ciudadanoRepositorio.obtenerPuntajesDeCiudadanos(pagina);
+    }
+    
+    public List<Ciudadano> obtenerTop10()
+    {
+        return ciudadanoRepositorio.obtenerTop10();
     }
     
 }

@@ -7,6 +7,7 @@ package com.helloworld.apispring.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="Ciudadano_evento")
-public class Ciudadano_evento implements Serializable{
+public class Ciudadano_evento{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -115,4 +116,21 @@ public class Ciudadano_evento implements Serializable{
         this.idEvento = idEvento;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(!(obj instanceof Ciudadano_evento)) return false;
+        Ciudadano_evento that = (Ciudadano_evento) obj;
+        return Objects.equals(ciudadano.getNombre(), that.ciudadano.getNombre())&&
+                Objects.equals(ciudadano.getApellido(), that.ciudadano.getApellido())&&
+                Objects.equals(Fecha, that.Fecha) &&
+                Objects.equals(Situacion, that.Situacion) &&
+                Objects.equals(evento.getDescripcion(), that.evento.getDescripcion());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ciudadano.getNombre(), ciudadano.getApellido(), Fecha, Situacion, evento.getDescripcion());
+    }
+    
 }

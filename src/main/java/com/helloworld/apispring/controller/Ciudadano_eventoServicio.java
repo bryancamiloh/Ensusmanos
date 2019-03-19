@@ -11,6 +11,7 @@ import com.helloworld.apispring.model.dao.EventoRepositorio;
 import com.helloworld.apispring.model.entity.Ciudadano;
 import com.helloworld.apispring.model.entity.Ciudadano_evento;
 import com.helloworld.apispring.model.entity.Evento;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +38,13 @@ public class Ciudadano_eventoServicio {
         Evento evento = eventoRepositorio.obtenerEventoPorId(reporte.getIdEvento());
         ciudadano.setPuntaje(ciudadano.getPuntaje() + evento.getPuntaje());
         reporte.setCiudadano(ciudadano);
+        reporte.setEvento(evento);
         return ciudadanoEventoRepositorio.reportarCiudadano(reporte);
+    }
+    
+    public List<Ciudadano_evento>obtenerRepoortesCiudadano(long ident)
+    {
+        return ciudadanoEventoRepositorio.obtenerReportesCiudadano(ident);
     }
     
 }
