@@ -38,12 +38,12 @@ public class CiudadanoRepositorio {
         return ciudadano.getIdCiudadano();
     }
     
-    public List<Ciudadano> login(long ident, String contraseña)
+    public Ciudadano login(Ciudadano ciudadano)
     {
         Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
-        crit.add(Restrictions.eq("idCiudadano", ident));
-        crit.add(Restrictions.eq("Contraseña", contraseña));
-        return crit.list();
+        crit.add(Restrictions.eq("idCiudadano", ciudadano.getIdCiudadano()));
+        crit.add(Restrictions.eq("Contrasena", ciudadano.getContrasena()));
+        return (Ciudadano) crit.uniqueResult();
     }
     
     public Ciudadano obtenerCiudadanoPorId(long id)
@@ -86,6 +86,15 @@ public class CiudadanoRepositorio {
         criteria.addOrder(Order.desc("Puntaje"));
         criteria.setMaxResults(10);
         return criteria.list();
+    }
+    
+    public Ciudadano obtenerPuntajeCiudadano(long id)
+    {
+       Criteria c = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+       c.add(Restrictions.eq("idCiudadano", id));
+       ProjectionList p = Projections.projectionList();
+       p.add(Projections.property("Puntaje"));
+       return (Ciudadano) c.uniqueResult();
     }
     
 }

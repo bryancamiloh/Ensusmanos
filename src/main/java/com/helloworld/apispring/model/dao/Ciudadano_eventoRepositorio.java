@@ -40,10 +40,10 @@ public class Ciudadano_eventoRepositorio implements Serializable{
         return reporte.getNumReporte();
     }
     
-    public List<Ciudadano_evento>obtenerReportesCiudadano(long ident)
+    public List<Ciudadano_evento>obtenerReportesCiudadano(Ciudadano ciudadano)
     {
-        Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class, "ciudadano");
-        crit.createAlias("ciudadano.reportes", "reporte");
+        Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano_evento.class);
+        crit.add(Restrictions.eq("ciudadano", ciudadano));
         return crit.list();
     }
     

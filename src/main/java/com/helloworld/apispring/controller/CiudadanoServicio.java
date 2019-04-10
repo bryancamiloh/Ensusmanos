@@ -37,9 +37,9 @@ public class CiudadanoServicio {
         return ciudadanoRepositorio.obtenerCiudadanos();
     }
     
-    public List<Ciudadano> Login(long ident, String contraseña)
+    public Ciudadano Login(Ciudadano ciudadano)
     {
-        return ciudadanoRepositorio.login(ident, contraseña);
+        return ciudadanoRepositorio.login(ciudadano);
     }
     
     public List<Ciudadano> obtenerPuntajesDeCiudadanos(int pagina)
@@ -50,6 +50,11 @@ public class CiudadanoServicio {
     public List<Ciudadano> obtenerTop10()
     {
         return ciudadanoRepositorio.obtenerTop10();
+    }
+    
+    public Ciudadano obtenerPuntajeCiudadano(long id)
+    {
+        return ciudadanoRepositorio.obtenerPuntajeCiudadano(id);
     }
     
 }

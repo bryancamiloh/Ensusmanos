@@ -27,8 +27,8 @@ public class Ciudadano {
     @Column
     private String Apellido;
     
-    @Column
-    private String Contraseña;
+    @Column(name="Contraseña")
+    private String Contrasena;
     
     @Column
     private int Puntaje;
@@ -41,11 +41,17 @@ public class Ciudadano {
         
     }
     
-    public Ciudadano(long idCiudadano, String Nombre, String Apellido, String Contraseña) {
+    public Ciudadano(long idCiudadano, String Contrasena)
+    {
+        this.idCiudadano = idCiudadano;
+        this.Contrasena = Contrasena;
+    }
+    
+    public Ciudadano(long idCiudadano, String Nombre, String Apellido, String Contrasena) {
         this.idCiudadano = idCiudadano;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.Contraseña = Contraseña;
+        this.Contrasena = Contrasena;
         this.Puntaje = 0;
     }
 
@@ -73,12 +79,12 @@ public class Ciudadano {
         this.Apellido = Apellido;
     }
 
-    public String getContraseña() {
-        return Contraseña;
+    public String getContrasena() {
+        return Contrasena;
     }
 
-    public void setContraseña(String Contraseña) {
-        this.Contraseña = Contraseña;
+    public void setContrasena(String Contrasena) {
+        this.Contrasena = Contrasena;
     }
 
     public int getPuntaje() {

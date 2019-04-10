@@ -42,9 +42,10 @@ public class Ciudadano_eventoServicio {
         return ciudadanoEventoRepositorio.reportarCiudadano(reporte);
     }
     
-    public List<Ciudadano_evento>obtenerRepoortesCiudadano(long ident)
+    public List<Ciudadano_evento>obtenerReportesCiudadano(long ident)
     {
-        return ciudadanoEventoRepositorio.obtenerReportesCiudadano(ident);
+        Ciudadano ciudadano = ciudadanoRepositorio.obtenerCiudadanoPorId(ident);
+        return ciudadanoEventoRepositorio.obtenerReportesCiudadano(ciudadano);
     }
     
 }
