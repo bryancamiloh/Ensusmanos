@@ -68,11 +68,17 @@ public class Controller {
    }
    
    @RequestMapping(value="/login",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<Ciudadano>Login(@RequestBody Ciudadano ciudadano)
+   public ResponseEntity<String>Login(@RequestBody Ciudadano ciudadano)
    {
-       Ciudadano resultado = ciudadanoServicio.Login(ciudadano);
+       String Mensaje = "";
        
-       return new ResponseEntity<Ciudadano>(resultado,HttpStatus.OK);
+       Ciudadano resultado = ciudadanoServicio.Login(ciudadano);
+       if(resultado != null)
+           Mensaje = "Bienvenid@ "+resultado.getNombre();
+       else
+           Mensaje = "Datos incorrectos, por favor intente nuevamente";
+       
+       return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
    }
    
    @RequestMapping(value="/puntajes/{pag}",method=RequestMethod.GET)
