@@ -27,6 +27,9 @@ public class Ciudadano {
     @Column
     private String Apellido;
     
+    @Column
+    private String Rol;
+    
     @Column(name="Contraseña")
     private String Contrasena;
     
@@ -74,6 +77,16 @@ public class Ciudadano {
     public String getApellido() {
         return Apellido;
     }
+
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String Rol) {
+        this.Rol = Rol;
+    }
+    
+    
 
     public void setApellido(String Apellido) {
         this.Apellido = Apellido;

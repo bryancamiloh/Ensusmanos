@@ -53,15 +53,17 @@ public class CiudadanoRepositorio {
         return (Ciudadano) criteria.uniqueResult();
     }
     
-    public List<Ciudadano> obtenerCiudadanos()
+    public List<Ciudadano> obtenerCiudadanos(int pagina)
     {
+        int resultados = 5;
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+        criteria.setFirstResult((resultados * pagina) - resultados);
+        criteria.setMaxResults(resultados);
         return criteria.list();
     }
     
-    public List<Ciudadano> obtenerPuntajesDeCiudadanos(int pagina)
+    public List<Ciudadano> obtenerPuntajesDeCiudadanos()
     {
-        int resultados = 5;
         
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
         ProjectionList projection = Projections.projectionList();
@@ -70,8 +72,6 @@ public class CiudadanoRepositorio {
         projection.add(Projections.property("Puntaje"));
         criteria.setProjection(projection);
         criteria.addOrder(Order.desc("Puntaje"));
-        criteria.setFirstResult((resultados * pagina) - resultados);
-        criteria.setMaxResults(resultados);
         return criteria.list();
     }
     

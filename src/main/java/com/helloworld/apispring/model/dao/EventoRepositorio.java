@@ -6,6 +6,7 @@
 package com.helloworld.apispring.model.dao;
 
 import com.helloworld.apispring.model.entity.Evento;
+import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -33,6 +34,12 @@ public class EventoRepositorio {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Evento.class);
         criteria.add(Restrictions.eq("numEvento", numevento));
         return (Evento) criteria.uniqueResult();
+    }
+    
+    public List<Evento> obtenerEventos()
+    {
+       Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Evento.class);
+       return crit.list();
     }
     
 }

@@ -10,6 +10,7 @@ package com.helloworld.apispring.controller;
 
 import com.helloworld.apispring.model.entity.Ciudadano;
 import com.helloworld.apispring.model.entity.Ciudadano_evento;
+import com.helloworld.apispring.model.entity.Evento;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,9 @@ public class Controller {
    
    @Autowired
    private Ciudadano_eventoServicio ciudadanoEventoServicio;
+   
+   @Autowired
+   private EventoServicio eventoServicio;
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<String> registrarCiudadano(@RequestBody Ciudadano ciudadano)
@@ -61,30 +65,29 @@ public class Controller {
    }
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos()
+   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos(@RequestParam(value="pag", required=true) int pagina)
    {
-       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos();
+       List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos(pagina);
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
    }
    
-   @RequestMapping(value="/login",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<String>Login(@RequestBody Ciudadano ciudadano)
-   {
-       String Mensaje = "";
-       
-       Ciudadano resultado = ciudadanoServicio.Login(ciudadano);
-       if(resultado != null)
-           Mensaje = "Bienvenid@ "+resultado.getNombre();
-       else
-           Mensaje = "Datos incorrectos, por favor intente nuevamente";
-       
-       return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
+   @RequestMapping(value="/eventos",method=RequestMethod.GET)
+   public ResponseEntity<List<Evento>> obtenerEventos(){
+       List<Evento> listaEventos = eventoServicio.obtenerEventos();
+       return new ResponseEntity<List<Evento>>(listaEventos,HttpStatus.OK);
    }
    
-   @RequestMapping(value="/puntajes/{pag}",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>> otenerPuntajesDeCiudadanos(@PathVariable("pag") int pagina)
+   @RequestMapping(value="/login",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<Ciudadano>Login(@RequestBody Ciudadano ciudadano)
+   {   
+       Ciudadano persona = ciudadanoServicio.Login(ciudadano);
+       return new ResponseEntity<Ciudadano>(persona,HttpStatus.OK);
+   }
+   
+   @RequestMapping(value="/puntajes",method=RequestMethod.GET)
+   public ResponseEntity<List<Ciudadano>> otenerPuntajesDeCiudadanos()
    {
-       List<Ciudadano> puntajesCiudadanos = ciudadanoServicio.obtenerPuntajesDeCiudadanos(pagina);
+       List<Ciudadano> puntajesCiudadanos = ciudadanoServicio.obtenerPuntajesDeCiudadanos();
        return new ResponseEntity<List<Ciudadano>>(puntajesCiudadanos,HttpStatus.OK);
    }
    

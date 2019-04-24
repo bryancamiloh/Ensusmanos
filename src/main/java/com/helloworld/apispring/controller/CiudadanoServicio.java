@@ -32,9 +32,9 @@ public class CiudadanoServicio {
         return ciudadanoRepositorio.obtenerCiudadanoPorId(id);
     }
     
-    public List<Ciudadano> obtenerCiudadanos()
+    public List<Ciudadano> obtenerCiudadanos(int pagina)
     {
-        return ciudadanoRepositorio.obtenerCiudadanos();
+        return ciudadanoRepositorio.obtenerCiudadanos(pagina);
     }
     
     public Ciudadano Login(Ciudadano ciudadano)
@@ -42,9 +42,9 @@ public class CiudadanoServicio {
         return ciudadanoRepositorio.login(ciudadano);
     }
     
-    public List<Ciudadano> obtenerPuntajesDeCiudadanos(int pagina)
+    public List<Ciudadano> obtenerPuntajesDeCiudadanos()
     {
-        return ciudadanoRepositorio.obtenerPuntajesDeCiudadanos(pagina);
+        return ciudadanoRepositorio.obtenerPuntajesDeCiudadanos();
     }
     
     public List<Ciudadano> obtenerTop10()
