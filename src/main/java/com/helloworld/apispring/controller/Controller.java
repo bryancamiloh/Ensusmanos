@@ -77,6 +77,14 @@ public class Controller {
        return new ResponseEntity<List<Evento>>(listaEventos,HttpStatus.OK);
    }
    
+   @RequestMapping(value="/eventos",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<String> agregarEvento(@RequestBody Evento evento)
+   {
+       long evt = eventoServicio.agregarEvento(evento);
+       String mensaje = "El evento ha sido agregado exitosamente. Evento #: "+evt;
+       return new ResponseEntity<String>(mensaje,HttpStatus.OK);
+   }
+   
    @RequestMapping(value="/login",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<Ciudadano>Login(@RequestBody Ciudadano ciudadano)
    {   

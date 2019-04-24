@@ -24,4 +24,9 @@ public class EventoServicio {
         return eventos;
     }
     
+    public long agregarEvento(Evento evento)
+    {
+        return eventoRepositorio.agregarEvento(evento);
+    }
+    
 }

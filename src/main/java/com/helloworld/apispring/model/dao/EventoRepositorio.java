@@ -42,4 +42,10 @@ public class EventoRepositorio {
        return crit.list();
     }
     
+    public long agregarEvento(Evento evento)
+    {
+        getSessionFactory().getCurrentSession().save(evento);
+        return evento.getNumEvento();
+    }
+    
 }
