@@ -28,7 +28,7 @@ public class Ciudadano {
     private String Apellido;
     
     @Column
-    private String Rol;
+    private int Rol;
     
     @Column(name="Contraseña")
     private String Contrasena;
@@ -55,6 +55,7 @@ public class Ciudadano {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Contrasena = Contrasena;
+        this.Rol = 2;
         this.Puntaje = 0;
     }
 
@@ -78,11 +79,11 @@ public class Ciudadano {
         return Apellido;
     }
 
-    public String getRol() {
+    public int getRol() {
         return Rol;
     }
 
-    public void setRol(String Rol) {
+    public void setRol(int Rol) {
         this.Rol = Rol;
     }
     

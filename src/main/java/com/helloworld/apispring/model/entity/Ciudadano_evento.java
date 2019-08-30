@@ -29,7 +29,7 @@ public class Ciudadano_evento{
     private long numReporte;
     
     @Column
-    private Date Fecha;
+    private String Fecha;
     
     @Column
     private String Situacion;
@@ -53,7 +53,7 @@ public class Ciudadano_evento{
         
     }
 
-    public Ciudadano_evento(Date Fecha, String Situacion, long idCiudadano, long idEvento) {
+    public Ciudadano_evento(String Fecha, String Situacion, long idCiudadano, long idEvento) {
         this.Fecha = Fecha;
         this.Situacion = Situacion;
         this.idCiudadano = idCiudadano;
@@ -68,11 +68,11 @@ public class Ciudadano_evento{
         this.numReporte = numReporte;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return Fecha;
     }
 
-    public void setFecha(Date Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 

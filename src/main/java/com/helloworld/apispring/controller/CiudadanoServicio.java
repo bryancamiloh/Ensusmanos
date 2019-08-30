@@ -22,7 +22,7 @@ public class CiudadanoServicio {
         
     }
     
-    public Long registrarCiudadano(Ciudadano ciudadano)
+    public Ciudadano registrarCiudadano(Ciudadano ciudadano)
     {
         return ciudadanoRepositorio.registrarCuidadano(ciudadano);
     }
@@ -35,6 +35,11 @@ public class CiudadanoServicio {
     public List<Ciudadano> obtenerCiudadanos(int pagina)
     {
         return ciudadanoRepositorio.obtenerCiudadanos(pagina);
+    }
+    
+    public List<Ciudadano> obtenerCiudadanos()
+    {
+        return ciudadanoRepositorio.obtenerCiudadanos();
     }
     
     public Ciudadano Login(Ciudadano ciudadano)

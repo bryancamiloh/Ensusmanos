@@ -37,10 +37,10 @@ public class Controller {
    private EventoServicio eventoServicio;
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<String> registrarCiudadano(@RequestBody Ciudadano ciudadano)
+   public ResponseEntity<Ciudadano> registrarCiudadano(@RequestBody Ciudadano ciudadano)
    {
-       String Mensaje = "Se ha realizado exitosamente un registro con número de identificacion: "+ciudadanoServicio.registrarCiudadano(ciudadano);
-       return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
+       Ciudadano persona = ciudadanoServicio.registrarCiudadano(ciudadano);
+       return new ResponseEntity<Ciudadano>(persona,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos/{id}",method=RequestMethod.GET)
@@ -70,6 +70,13 @@ public class Controller {
        List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos(pagina);
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
    }
+   
+  @RequestMapping(value="/Personas",method=RequestMethod.GET)
+  public ResponseEntity<List<Ciudadano>> obtenerCiudadanos()
+  {
+      List<Ciudadano> ciudadanos = ciudadanoServicio.obtenerCiudadanos();
+      return new ResponseEntity<List<Ciudadano>>(ciudadanos,HttpStatus.OK);
+  }
    
    @RequestMapping(value="/eventos",method=RequestMethod.GET)
    public ResponseEntity<List<Evento>> obtenerEventos(){

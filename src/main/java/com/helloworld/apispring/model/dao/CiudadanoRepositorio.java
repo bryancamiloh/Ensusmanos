@@ -32,10 +32,10 @@ public class CiudadanoRepositorio {
         this.sessionFactory = sessionFactory;
     }
     
-    public long registrarCuidadano(Ciudadano ciudadano)
+    public Ciudadano registrarCuidadano(Ciudadano ciudadano)
     {
         getSessionFactory().getCurrentSession().save(ciudadano);
-        return ciudadano.getIdCiudadano();
+        return ciudadano;
     }
     
     public Ciudadano login(Ciudadano ciudadano)
@@ -60,6 +60,12 @@ public class CiudadanoRepositorio {
         criteria.setFirstResult((resultados * pagina) - resultados);
         criteria.setMaxResults(resultados);
         return criteria.list();
+    }
+    
+    public List<Ciudadano> obtenerCiudadanos()
+    {
+        Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+        return crit.list();
     }
     
     public List<Ciudadano> obtenerPuntajesDeCiudadanos()
