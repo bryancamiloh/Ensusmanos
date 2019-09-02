@@ -17,48 +17,38 @@ public class CiudadanoServicio {
     @Autowired
     private CiudadanoRepositorio ciudadanoRepositorio;
     
-    public CiudadanoServicio()
-    {
-        
+    public CiudadanoServicio() {
     }
     
-    public Ciudadano registrarCiudadano(Ciudadano ciudadano)
-    {
+    public Ciudadano registrarCiudadano(Ciudadano ciudadano) {
         return ciudadanoRepositorio.registrarCuidadano(ciudadano);
     }
     
-    public Ciudadano obtenerCiudadanoPorId(long id)
-    {
+    public Ciudadano obtenerCiudadanoPorId(long id) {
         return ciudadanoRepositorio.obtenerCiudadanoPorId(id);
     }
     
-    public List<Ciudadano> obtenerCiudadanos(int pagina)
-    {
+    public List<Ciudadano> obtenerCiudadanos(int pagina) {
         return ciudadanoRepositorio.obtenerCiudadanos(pagina);
     }
     
-    public List<Ciudadano> obtenerCiudadanos()
-    {
+    public List<Ciudadano> obtenerCiudadanos() {
         return ciudadanoRepositorio.obtenerCiudadanos();
     }
     
-    public Ciudadano Login(Ciudadano ciudadano)
-    {
+    public Ciudadano Login(Ciudadano ciudadano) {
         return ciudadanoRepositorio.login(ciudadano);
     }
     
-    public List<Ciudadano> obtenerPuntajesDeCiudadanos()
-    {
+    public List<Ciudadano> obtenerPuntajesDeCiudadanos() {
         return ciudadanoRepositorio.obtenerPuntajesDeCiudadanos();
     }
     
-    public List<Ciudadano> obtenerTop10()
-    {
+    public List<Ciudadano> obtenerTop10() {
         return ciudadanoRepositorio.obtenerTop10();
     }
     
-    public Ciudadano obtenerPuntajeCiudadano(long id)
-    {
+    public Ciudadano obtenerPuntajeCiudadano(long id) {
         return ciudadanoRepositorio.obtenerPuntajeCiudadano(id);
     }
     

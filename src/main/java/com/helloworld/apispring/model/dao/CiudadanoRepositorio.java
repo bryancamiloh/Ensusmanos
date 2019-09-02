@@ -32,47 +32,46 @@ public class CiudadanoRepositorio {
         this.sessionFactory = sessionFactory;
     }
     
-    public Ciudadano registrarCuidadano(Ciudadano ciudadano)
-    {
+    public Ciudadano registrarCuidadano(Ciudadano ciudadano) {
+        
         getSessionFactory().getCurrentSession().save(ciudadano);
         return ciudadano;
     }
     
-    public Ciudadano login(Ciudadano ciudadano)
-    {
+    public Ciudadano login(Ciudadano ciudadano) {
         Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+        
         crit.add(Restrictions.eq("idCiudadano", ciudadano.getIdCiudadano()));
         crit.add(Restrictions.eq("Contrasena", ciudadano.getContrasena()));
         return (Ciudadano) crit.uniqueResult();
     }
     
-    public Ciudadano obtenerCiudadanoPorId(long id)
-    {
+    public Ciudadano obtenerCiudadanoPorId(long id) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+    
         criteria.add(Restrictions.eq("idCiudadano", id));
+        
         return (Ciudadano) criteria.uniqueResult();
     }
     
-    public List<Ciudadano> obtenerCiudadanos(int pagina)
-    {
+    public List<Ciudadano> obtenerCiudadanos(int pagina) {
         int resultados = 5;
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
+        
         criteria.setFirstResult((resultados * pagina) - resultados);
         criteria.setMaxResults(resultados);
         return criteria.list();
     }
     
-    public List<Ciudadano> obtenerCiudadanos()
-    {
+    public List<Ciudadano> obtenerCiudadanos() {
         Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
         return crit.list();
     }
     
-    public List<Ciudadano> obtenerPuntajesDeCiudadanos()
-    {
-        
+    public List<Ciudadano> obtenerPuntajesDeCiudadanos() {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
         ProjectionList projection = Projections.projectionList();
+        
         projection.add(Projections.property("Nombre"));
         projection.add(Projections.property("Apellido"));
         projection.add(Projections.property("Puntaje"));
@@ -81,10 +80,10 @@ public class CiudadanoRepositorio {
         return criteria.list();
     }
     
-    public List<Ciudadano> obtenerTop10()
-    {   
+    public List<Ciudadano> obtenerTop10() {   
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
         ProjectionList projection = Projections.projectionList();
+        
         projection.add(Projections.property("Nombre"));
         projection.add(Projections.property("Apellido"));
         projection.add(Projections.property("Puntaje"));
@@ -94,11 +93,11 @@ public class CiudadanoRepositorio {
         return criteria.list();
     }
     
-    public Ciudadano obtenerPuntajeCiudadano(long id)
-    {
+    public Ciudadano obtenerPuntajeCiudadano(long id) {
        Criteria c = getSessionFactory().getCurrentSession().createCriteria(Ciudadano.class);
-       c.add(Restrictions.eq("idCiudadano", id));
        ProjectionList p = Projections.projectionList();
+       
+       c.add(Restrictions.eq("idCiudadano", id));
        p.add(Projections.property("Puntaje"));
        return (Ciudadano) c.uniqueResult();
     }

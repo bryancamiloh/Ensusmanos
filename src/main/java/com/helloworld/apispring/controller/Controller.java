@@ -37,85 +37,74 @@ public class Controller {
    private EventoServicio eventoServicio;
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<Ciudadano> registrarCiudadano(@RequestBody Ciudadano ciudadano)
-   {
+   public ResponseEntity<Ciudadano> registrarCiudadano(@RequestBody Ciudadano ciudadano) {
        Ciudadano persona = ciudadanoServicio.registrarCiudadano(ciudadano);
        return new ResponseEntity<Ciudadano>(persona,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos/{id}",method=RequestMethod.GET)
-   public ResponseEntity<Ciudadano> obtenerCiudadanoPorId(@PathVariable("id") long id)
-   {
+   public ResponseEntity<Ciudadano> obtenerCiudadanoPorId(@PathVariable("id") long id) {
        Ciudadano persona = ciudadanoServicio.obtenerCiudadanoPorId(id);
        return new ResponseEntity<Ciudadano>(persona,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos/{id}/reportes",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<String> reportarCiudadano(@RequestBody Ciudadano_evento reporte, @PathVariable("id") long id)
-   {
+   public ResponseEntity<String> reportarCiudadano(@RequestBody Ciudadano_evento reporte, @PathVariable("id") long id) {
        String Mensaje = "Reporte realizado con éxito numero de reporte: "+ciudadanoEventoServicio.reportarCiudadano(reporte);
        return new ResponseEntity<String>(Mensaje,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos/{id}/reportes",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano_evento>> obtenerReportesCiudadano(@PathVariable("id") long ident)
-   {
+   public ResponseEntity<List<Ciudadano_evento>> obtenerReportesCiudadano(@PathVariable("id") long ident) {
        List<Ciudadano_evento> listaReportes = ciudadanoEventoServicio.obtenerReportesCiudadano(ident);
        return new ResponseEntity<List<Ciudadano_evento>>(listaReportes,HttpStatus.OK);
    }
    
    @RequestMapping(value="/ciudadanos",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos(@RequestParam(value="pag", required=true) int pagina)
-   {
+   public ResponseEntity<List<Ciudadano>>obtenerCiudadanos(@RequestParam(value="pag", required=true) int pagina) {
        List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos(pagina);
        return new ResponseEntity<List<Ciudadano>>(listaCiudadanos,HttpStatus.OK);
    }
    
   @RequestMapping(value="/Personas",method=RequestMethod.GET)
-  public ResponseEntity<List<Ciudadano>> obtenerCiudadanos()
-  {
+  public ResponseEntity<List<Ciudadano>> obtenerCiudadanos() {
       List<Ciudadano> ciudadanos = ciudadanoServicio.obtenerCiudadanos();
       return new ResponseEntity<List<Ciudadano>>(ciudadanos,HttpStatus.OK);
   }
    
    @RequestMapping(value="/eventos",method=RequestMethod.GET)
-   public ResponseEntity<List<Evento>> obtenerEventos(){
+   public ResponseEntity<List<Evento>> obtenerEventos() {
        List<Evento> listaEventos = eventoServicio.obtenerEventos();
        return new ResponseEntity<List<Evento>>(listaEventos,HttpStatus.OK);
    }
    
    @RequestMapping(value="/eventos",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<String> agregarEvento(@RequestBody Evento evento)
-   {
+   public ResponseEntity<String> agregarEvento(@RequestBody Evento evento) {
        long evt = eventoServicio.agregarEvento(evento);
        String mensaje = "El evento ha sido agregado exitosamente. Evento #: "+evt;
        return new ResponseEntity<String>(mensaje,HttpStatus.OK);
    }
    
    @RequestMapping(value="/login",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<Ciudadano>Login(@RequestBody Ciudadano ciudadano)
-   {   
+   public ResponseEntity<Ciudadano>Login(@RequestBody Ciudadano ciudadano) {   
        Ciudadano persona = ciudadanoServicio.Login(ciudadano);
        return new ResponseEntity<Ciudadano>(persona,HttpStatus.OK);
    }
    
    @RequestMapping(value="/puntajes",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>> otenerPuntajesDeCiudadanos()
-   {
+   public ResponseEntity<List<Ciudadano>> otenerPuntajesDeCiudadanos() {
        List<Ciudadano> puntajesCiudadanos = ciudadanoServicio.obtenerPuntajesDeCiudadanos();
        return new ResponseEntity<List<Ciudadano>>(puntajesCiudadanos,HttpStatus.OK);
    }
    
    @RequestMapping(value="/top10",method=RequestMethod.GET)
-   public ResponseEntity<List<Ciudadano>> obtenerTop10()
-   {
+   public ResponseEntity<List<Ciudadano>> obtenerTop10() {
        List<Ciudadano> topList = ciudadanoServicio.obtenerTop10();
        return new ResponseEntity<List<Ciudadano>>(topList,HttpStatus.OK);
    }
    
    @RequestMapping(value="/Ciudadanos/{id}/puntajes",method=RequestMethod.GET)
-   public ResponseEntity<Ciudadano> obtnerPuntajeCiudadano(@PathVariable("id") int id)
-   {
+   public ResponseEntity<Ciudadano> obtnerPuntajeCiudadano(@PathVariable("id") int id) {
        Ciudadano ciudadano = ciudadanoServicio.obtenerPuntajeCiudadano(id);
        return new ResponseEntity<Ciudadano>(ciudadano,HttpStatus.OK);
    }

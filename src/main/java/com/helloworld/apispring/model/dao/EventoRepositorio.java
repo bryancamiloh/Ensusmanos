@@ -29,21 +29,19 @@ public class EventoRepositorio {
         this.sessionFactory = sessionFactory;
     }
     
-    public Evento obtenerEventoPorId(long numevento)
-    {
+    public Evento obtenerEventoPorId(long numevento) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Evento.class);
+        
         criteria.add(Restrictions.eq("numEvento", numevento));
         return (Evento) criteria.uniqueResult();
     }
     
-    public List<Evento> obtenerEventos()
-    {
+    public List<Evento> obtenerEventos() {
        Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Evento.class);
        return crit.list();
     }
     
-    public long agregarEvento(Evento evento)
-    {
+    public long agregarEvento(Evento evento) {
         getSessionFactory().getCurrentSession().save(evento);
         return evento.getNumEvento();
     }

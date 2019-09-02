@@ -27,23 +27,20 @@ public class Ciudadano_eventoServicio {
     @Autowired
     private EventoRepositorio eventoRepositorio;
     
-    public Ciudadano_eventoServicio()
-    {
-        
+    public Ciudadano_eventoServicio() { 
     }
     
-    public long reportarCiudadano(Ciudadano_evento reporte)
-    {
+    public long reportarCiudadano(Ciudadano_evento reporte) {
         Ciudadano ciudadano = ciudadanoRepositorio.obtenerCiudadanoPorId(reporte.getIdCiudadano());
         Evento evento = eventoRepositorio.obtenerEventoPorId(reporte.getIdEvento());
+        
         ciudadano.setPuntaje(ciudadano.getPuntaje() + evento.getPuntaje());
         reporte.setCiudadano(ciudadano);
         reporte.setEvento(evento);
         return ciudadanoEventoRepositorio.reportarCiudadano(reporte);
     }
     
-    public List<Ciudadano_evento>obtenerReportesCiudadano(long ident)
-    {
+    public List<Ciudadano_evento>obtenerReportesCiudadano(long ident) {
         Ciudadano ciudadano = ciudadanoRepositorio.obtenerCiudadanoPorId(ident);
         return ciudadanoEventoRepositorio.obtenerReportesCiudadano(ciudadano);
     }

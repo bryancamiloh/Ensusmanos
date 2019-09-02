@@ -37,9 +37,7 @@ public class Evento {
     @OneToMany(mappedBy="evento")
     private List<Ciudadano_evento> reportes;
     
-    public Evento()
-    {
-        
+    public Evento() {    
     }
 
     public Evento(long numEvento, String Descripcion, int Puntaje) {

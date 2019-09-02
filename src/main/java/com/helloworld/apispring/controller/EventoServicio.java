@@ -18,14 +18,12 @@ public class EventoServicio {
     private EventoRepositorio eventoRepositorio;
     
     
-    public List<Evento> obtenerEventos()
-    {
+    public List<Evento> obtenerEventos() {
         List<Evento> eventos = eventoRepositorio.obtenerEventos();
         return eventos;
     }
     
-    public long agregarEvento(Evento evento)
-    {
+    public long agregarEvento(Evento evento) {
         return eventoRepositorio.agregarEvento(evento);
     }
     

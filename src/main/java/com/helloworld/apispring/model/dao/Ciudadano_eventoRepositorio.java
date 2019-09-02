@@ -7,7 +7,6 @@ package com.helloworld.apispring.model.dao;
 
 import com.helloworld.apispring.model.entity.Ciudadano;
 import com.helloworld.apispring.model.entity.Ciudadano_evento;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Criteria;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class Ciudadano_eventoRepositorio implements Serializable{
+public class Ciudadano_eventoRepositorio {
     
     @Autowired
     private SessionFactory sessionFactory;
@@ -34,19 +33,16 @@ public class Ciudadano_eventoRepositorio implements Serializable{
         this.sessionFactory = sessionFactory;
     }
     
-    public long reportarCiudadano(Ciudadano_evento reporte)
-    {
+    public long reportarCiudadano(Ciudadano_evento reporte) {
         getSessionFactory().getCurrentSession().save(reporte);
         return reporte.getNumReporte();
     }
     
-    public List<Ciudadano_evento>obtenerReportesCiudadano(Ciudadano ciudadano)
-    {
+    public List<Ciudadano_evento>obtenerReportesCiudadano(Ciudadano ciudadano) {
         Criteria crit = getSessionFactory().getCurrentSession().createCriteria(Ciudadano_evento.class);
+        
         crit.add(Restrictions.eq("ciudadano", ciudadano));
         return crit.list();
     }
-    
-    
     
 }

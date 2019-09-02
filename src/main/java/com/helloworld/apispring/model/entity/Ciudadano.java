@@ -39,18 +39,15 @@ public class Ciudadano {
     @OneToMany(mappedBy="ciudadano")
     private List<Ciudadano_evento> reportes;
     
-    public Ciudadano()
-    {
-        
+    public Ciudadano() {
     }
     
-    public Ciudadano(long idCiudadano, String Contrasena)
-    {
+    public Ciudadano (long idCiudadano, String Contrasena) {
         this.idCiudadano = idCiudadano;
         this.Contrasena = Contrasena;
     }
     
-    public Ciudadano(long idCiudadano, String Nombre, String Apellido, String Contrasena) {
+    public Ciudadano (long idCiudadano, String Nombre, String Apellido, String Contrasena) {
         this.idCiudadano = idCiudadano;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -59,7 +56,7 @@ public class Ciudadano {
         this.Puntaje = 0;
     }
 
-    public long getIdCiudadano() {
+    public long getIdCiudadano() { 
         return idCiudadano;
     }
 
@@ -79,7 +76,7 @@ public class Ciudadano {
         return Apellido;
     }
 
-    public int getRol() {
+    public int getRol() {   
         return Rol;
     }
 

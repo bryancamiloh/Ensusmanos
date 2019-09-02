@@ -21,7 +21,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="Ciudadano_evento")
-public class Ciudadano_evento{
+public class Ciudadano_evento {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -48,9 +48,7 @@ public class Ciudadano_evento{
     @JoinColumn(name="Num_evento")
     private Evento evento;
     
-    public Ciudadano_evento()
-    {
-        
+    public Ciudadano_evento() {
     }
 
     public Ciudadano_evento(String Fecha, String Situacion, long idCiudadano, long idEvento) {
@@ -114,23 +112,6 @@ public class Ciudadano_evento{
 
     public void setIdEvento(long idEvento) {
         this.idEvento = idEvento;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(!(obj instanceof Ciudadano_evento)) return false;
-        Ciudadano_evento that = (Ciudadano_evento) obj;
-        return Objects.equals(ciudadano.getNombre(), that.ciudadano.getNombre())&&
-                Objects.equals(ciudadano.getApellido(), that.ciudadano.getApellido())&&
-                Objects.equals(Fecha, that.Fecha) &&
-                Objects.equals(Situacion, that.Situacion) &&
-                Objects.equals(evento.getDescripcion(), that.evento.getDescripcion());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ciudadano.getNombre(), ciudadano.getApellido(), Fecha, Situacion, evento.getDescripcion());
     }
     
 }
